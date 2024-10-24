@@ -1,1 +1,1 @@
-# 0xtrav POC
+# 0xtrav CORS Misconfiguration POC
